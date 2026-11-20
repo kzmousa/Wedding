@@ -908,7 +908,7 @@ const CONFIG = {
   // Ceremony start (Cairo time, UTC+2)
   date: "2026-12-11T19:00:00+02:00",
   // WhatsApp number for RSVPs, digits only with country code, e.g. "201001234567"
-  whatsapp: "",
+  whatsapp: "201122835599",
   mapsLink: "https://maps.app.goo.gl/MQ5bP41bSes9RGYw7?g_st=ic",
   mapsEmbedQuery: "Maadi Island Hall, Cairo",
   // Background music: YouTube video id (or set musicFile to an mp3 path, which takes priority)
@@ -993,6 +993,7 @@ const STR = {
   }
 };
 
+document.body.classList.add("locked");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const EVENT = new Date(CONFIG.date);
 const TZ = "Africa/Cairo";
@@ -1242,7 +1243,7 @@ envelope.addEventListener("click", async () => {
   document.body.classList.remove("locked");
   hero.classList.add("play");
   hero.querySelectorAll(".flora").forEach(f => f.classList.add("in"));
-  musicBtn.classList.add("show");
+  if (audio || CONFIG.youtubeId) musicBtn.classList.add("show");
   fitNames();
   observeReveals();
 });
