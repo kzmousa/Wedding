@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>خالد & سارة · دعوة زفاف</title>
+<title>Khaled &amp; Sarah · Wedding Invitation</title>
 <meta name="description" content="Khaled & Sarah · Friday 11 December 2026 · G Island, Maadi Island Hall">
 <meta property="og:title" content="Khaled & Sarah · خالد و سارة">
 <meta property="og:description" content="You are invited · Friday 11 December 2026 · G Island">
@@ -54,7 +54,7 @@
     overflow-x: hidden;
   }
   body.locked { overflow: hidden; height: 100vh; }
-  img { display: block; max-width: 100%; }
+  img { display: block; max-width: 100%; height: auto; }
   a { color: inherit; }
 
   /* ---------- watercolour paper ---------- */
@@ -237,15 +237,19 @@
     text-align: center;
   }
   .verse {
-    font-family: "Amiri", serif;
-    font-size: clamp(15px, 4vw, 17px);
-    line-height: 1.9;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: clamp(16px, 4.2vw, 18px);
+    line-height: 1.6;
     color: var(--ink-soft);
-    max-width: 30ch;
+    max-width: 32ch;
     margin-bottom: 26px;
-    direction: rtl;
   }
-  .verse small { display: block; font-size: 13px; color: var(--gold-dark); }
+  .verse small {
+    display: block; margin-top: 6px;
+    font-style: normal; font-size: 12px; font-weight: 600;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--gold-dark);
+  }
 
   .arch {
     position: relative;
@@ -583,7 +587,6 @@
     font-size: 17px; font-weight: 600;
   }
   .ctrl:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
-  #langBtn { top: 14px; right: max(14px, calc(50% - 260px + 14px)); }
   #musicBtn {
     bottom: 18px; right: max(14px, calc(50% - 260px + 14px));
     opacity: 0; pointer-events: none; transition: opacity .6s;
@@ -728,8 +731,8 @@
   <!-- HERO -->
   <header class="hero" id="hero">
     <p class="verse rv" style="--d:.2s">
-      ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
-      <small>سورة الروم · ٢١</small>
+      “And among His signs is that He created for you spouses from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy.”
+      <small>Quran 30:21</small>
     </p>
 
     <div class="arch">
@@ -893,7 +896,6 @@
   </footer>
 </main>
 
-<button class="ctrl" id="langBtn" type="button" aria-label="Switch language">EN</button>
 <button class="ctrl" id="musicBtn" type="button" aria-label="Play / pause music">
   <svg class="note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
   <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -912,10 +914,10 @@ const CONFIG = {
   mapsLink: "https://maps.app.goo.gl/MQ5bP41bSes9RGYw7?g_st=ic",
   mapsEmbedQuery: "Maadi Island Hall, Cairo",
   // Background music: YouTube video id (or set musicFile to an mp3 path, which takes priority)
-  youtubeId: "fXN-m49MHO0",
+  youtubeId: "",
   musicStart: 0,
-  musicFile: "",
-  defaultLang: "ar"
+  musicFile: "assets/music.m4a",
+  defaultLang: "en"
 };
 
 const STR = {
@@ -929,7 +931,7 @@ const STR = {
     inviteTitle: "يتشرّفان بدعوتكم",
     inviteText: "بقلوبٍ يملؤها الفرح والامتنان، يسعدنا أن ندعوكم لمشاركتنا أجمل لحظات العمر، والاحتفال ببداية حكايتنا معاً. فحضوركم يكتمل به فرحنا، ويزيد ليلتنا بهجةً ونوراً.",
     timeLabel: "في تمام الساعة السابعة مساءً",
-    arrive: "استقبال الضيوف", arriveTime: "٧:٠٠ مساءً",
+    arrive: "استقبال الضيوف", arriveTime: "٦:٤٥ مساءً",
     celebrate: "حفل الزفاف", celebrateTime: "٧:٠٠ مساءً",
     saveDate: "احفظوا الموعد",
     countdownTitle: "العدّ التنازلي ليومنا الموعود",
@@ -965,7 +967,7 @@ const STR = {
     inviteTitle: "You Are Cordially Invited",
     inviteText: "With joyful hearts and endless gratitude, we invite you to share in the most beautiful moment of our lives as we begin our forever together. Your presence would make our happiness complete.",
     timeLabel: "At seven o'clock in the evening",
-    arrive: "Guest Arrival", arriveTime: "7:00 PM",
+    arrive: "Guest Arrival", arriveTime: "6:45 PM",
     celebrate: "Ceremony & Reception", celebrateTime: "7:00 PM",
     saveDate: "Save the date",
     countdownTitle: "Counting down to forever",
@@ -998,7 +1000,6 @@ const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const EVENT = new Date(CONFIG.date);
 const TZ = "Africa/Cairo";
 let lang = CONFIG.defaultLang;
-try { lang = localStorage.getItem("inv-lang") || lang; } catch (e) {}
 
 /* ---------- language ---------- */
 function digits(n, l = lang) {
@@ -1011,7 +1012,6 @@ function applyLang() {
   document.title = S.title;
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = S[el.dataset.i18n]; if (v != null) el.textContent = v; });
   document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", S[el.dataset.i18nAria]));
-  document.getElementById("langBtn").textContent = S.langBtn;
 
   const loc = lang === "ar" ? "ar-EG" : "en-GB";
   const f = (o) => new Intl.DateTimeFormat(loc, { timeZone: TZ, ...o }).format(EVENT);
@@ -1261,12 +1261,6 @@ function observeReveals() {
   document.querySelectorAll(".sr, .closing .flora").forEach(x => io.observe(x));
 }
 
-/* ---------- language toggle ---------- */
-document.getElementById("langBtn").addEventListener("click", () => {
-  lang = lang === "ar" ? "en" : "ar";
-  try { localStorage.setItem("inv-lang", lang); } catch (e) {}
-  applyLang();
-});
 applyLang();
 addEventListener("resize", fitNames);
 if (document.fonts) document.fonts.ready.then(fitNames);
